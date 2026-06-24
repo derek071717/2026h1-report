@@ -186,6 +186,27 @@ body {
   background: linear-gradient(135deg, #1e3a5f 0%, #1a1a2e 100%);
   color: #ffffff;
   border: none;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: center;
+}
+.project-card.featured .project-img {
+  order: 2;
+}
+.project-img img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
+}
+.project-card:not(.featured) .project-img {
+  margin-top: 16px;
+}
+.project-card:not(.featured) .project-img img {
+  max-height: 160px;
+  object-fit: contain;
 }
 .project-card.featured .project-count { color: #93c5fd; }
 .project-card.featured .project-label { color: #cbd5e1; }
@@ -424,7 +445,8 @@ body {
 @media (max-width: 768px) {
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
   .project-grid { grid-template-columns: 1fr; }
-  .project-card.featured { grid-column: 1; }
+  .project-card.featured { grid-column: 1; grid-template-columns: 1fr; }
+  .project-card.featured .project-img { order: 0; }
   .breakdown-grid { grid-template-columns: repeat(3, 1fr); }
   .meeting-stats { grid-template-columns: 1fr; }
   .meeting-types { grid-template-columns: 1fr; }
@@ -514,17 +536,22 @@ body {
     </div>
     <div class="project-grid">
       <div class="project-card featured reveal">
-        <span class="project-icon">&#x1F3AE;</span>
-        <div class="project-name">街霸 / 王牌爭霸</div>
-        <div class="project-count">168</div>
-        <div class="project-label">工作項目 - 核心專案</div>
-        <div class="project-months">活躍期間: 2026-01 至 2026-06（全期間）</div>
-        <div class="tag-row">
-          <span class="tag">規格撰寫</span>
-          <span class="tag">品質測試</span>
-          <span class="tag">監修送審</span>
-          <span class="tag">代理商協調</span>
-          <span class="tag">成本估算</span>
+        <div>
+          <span class="project-icon">&#x1F3AE;</span>
+          <div class="project-name">街霸 / 王牌爭霸</div>
+          <div class="project-count">168</div>
+          <div class="project-label">工作項目 - 核心專案</div>
+          <div class="project-months">活躍期間: 2026-01 至 2026-06（全期間）</div>
+          <div class="tag-row">
+            <span class="tag">規格撰寫</span>
+            <span class="tag">品質測試</span>
+            <span class="tag">監修送審</span>
+            <span class="tag">代理商協調</span>
+            <span class="tag">成本估算</span>
+          </div>
+        </div>
+        <div class="project-img">
+          <img src="王牌爭霸.png" alt="王牌爭霸機台">
         </div>
       </div>
       <div class="project-card reveal">
@@ -538,6 +565,9 @@ body {
           <span class="tag">送審文件</span>
           <span class="tag">版本測試</span>
         </div>
+        <div class="project-img">
+          <img src="電音魔方.png" alt="電音魔方機台">
+        </div>
       </div>
       <div class="project-card reveal">
         <span class="project-icon">&#x1F9CA;</span>
@@ -549,6 +579,9 @@ body {
           <span class="tag">送審</span>
           <span class="tag">場測</span>
           <span class="tag">深化規格</span>
+        </div>
+        <div class="project-img">
+          <img src="蟹霸來襲.png" alt="蟹霸來襲機台">
         </div>
       </div>
       <div class="project-card reveal">
