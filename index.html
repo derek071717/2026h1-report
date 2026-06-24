@@ -467,6 +467,52 @@ body {
   .kpi-card, .project-card { transition: none; }
   .month-bar .bar-fill { transition: none; }
 }
+
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.hero-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  justify-items: center;
+}
+.hero-product-img {
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.hero-product-img:hover {
+  transform: translateY(-4px);
+}
+.hero-img-1 {
+  grid-column: 1 / -1;
+  max-width: 280px;
+}
+.hero-img-2 { }
+.hero-img-3 { }
+@media (max-width: 768px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+  }
+  .hero-images {
+    margin-top: 2rem;
+  }
+  .hero-product-img {
+    max-width: 160px;
+  }
+  .hero-img-1 {
+    max-width: 220px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -474,23 +520,30 @@ body {
 <!-- Hero -->
 <section class="hero">
   <div class="container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">2026 H1 Work Report</div>
-      <h1>謝杞釧<br>上半年工作進度匯報</h1>
-      <p class="hero-sub">涵蓋 2026 年 1 月至 6 月期間，橫跨多專案的產品企劃、規格撰寫、品質測試與跨部門協調工作成果。</p>
-      <div class="hero-meta">
-        <div class="hero-meta-item">
-          <span class="label">報告期間</span>
-          <span class="value">2026.01 - 2026.06</span>
+    <div class="hero-split">
+      <div class="hero-content">
+        <div class="hero-eyebrow">2026 H1 Work Report</div>
+        <h1>謝杞釧<br>上半年工作進度匯報</h1>
+        <p class="hero-sub">涵蓋 2026 年 1 月至 6 月期間，橫跨多專案的產品企劃、規格撰寫、品質測試與跨部門協調工作成果。</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="label">報告期間</span>
+            <span class="value">2026.01 - 2026.06</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">有效工作日</span>
+            <span class="value">112 天</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="label">總工作項目</span>
+            <span class="value">669 筆</span>
+          </div>
         </div>
-        <div class="hero-meta-item">
-          <span class="label">有效工作日</span>
-          <span class="value">112 天</span>
-        </div>
-        <div class="hero-meta-item">
-          <span class="label">總工作項目</span>
-          <span class="value">669 筆</span>
-        </div>
+      </div>
+      <div class="hero-images">
+        <img src="王牌爭霸.png" alt="王牌爭霸" class="hero-product-img hero-img-1">
+        <img src="電音魔方.png" alt="電音魔方" class="hero-product-img hero-img-2">
+        <img src="蟹霸來襲.png" alt="蟹霸來襲" class="hero-product-img hero-img-3">
       </div>
     </div>
   </div>
