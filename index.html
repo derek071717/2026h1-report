@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>謝杞釧 - 2026 上半年工作進度匯報</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-muted: #7a7a9a;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --surface: #ffffff;
+  --surface-elevated: #f8fafc;
+  --surface-muted: #f1f5f9;
+  --border: #e2e8f0;
+  --radius: 12px;
+  --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--surface);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40%; right: -20%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.hero-meta {
+  margin-top: 40px;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.hero-meta-item .label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hero-meta-item .value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* KPI Section */
+.kpi-section { padding: 80px 0; }
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.kpi-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.kpi-card .icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+}
+.kpi-card .number {
+  font-family: var(--font-mono);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.kpi-card .unit {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.kpi-card .desc {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Section Headers */
+.section-header {
+  margin-bottom: 48px;
+}
+.section-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.section-header p {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+}
+
+/* Project Cards */
+.projects-section { padding: 80px 0; }
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.project-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+}
+.project-card.featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #1e3a5f 0%, #1a1a2e 100%);
+  color: #ffffff;
+  border: none;
+}
+.project-card.featured .project-count { color: #93c5fd; }
+.project-card.featured .project-label { color: #cbd5e1; }
+.project-card.featured .project-name { color: #ffffff; }
+.project-card.featured .tag { background: rgba(255,255,255,0.12); color: #e2e8f0; }
+
+.project-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+.project-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.project-count {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.project-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.project-months {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.tag-row { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Timeline */
+.timeline-section { padding: 80px 0; }
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-bottom: 0;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -33px; top: 6px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--surface);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.timeline-month {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.timeline-content h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.timeline-content ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.timeline-content ul li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--surface-muted);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+/* Monthly Breakdown */
+.breakdown-section { padding: 80px 0; }
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+.month-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.month-bar .bar-wrap {
+  width: 100%;
+  height: 200px;
+  background: var(--surface-muted);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.month-bar .bar-fill {
+  width: 100%;
+  border-radius: 8px;
+  transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.month-bar .bar-number {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.month-bar .bar-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Meetings Section */
+.meetings-section { padding: 80px 0; }
+.meeting-stats {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.meeting-big-number {
+  text-align: center;
+}
+.meeting-big-number .number {
+  font-family: var(--font-mono);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.meeting-big-number .label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+.meeting-types {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.meeting-type {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.meeting-type .name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.meeting-type .count {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Highlights */
+.highlights-section { padding: 80px 0; }
+.highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.highlight-card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.highlight-card .icon { font-size: 24px; margin-bottom: 12px; display: block; }
+.highlight-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+.highlight-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+.footer p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Scroll Reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-card.featured { grid-column: 1; }
+  .breakdown-grid { grid-template-columns: repeat(3, 1fr); }
+  .meeting-stats { grid-template-columns: 1fr; }
+  .meeting-types { grid-template-columns: 1fr; }
+  .highlights-grid { grid-template-columns: 1fr; }
+  .hero { min-height: auto; padding: 120px 0 60px; }
+  .hero h1 { font-size: 2rem; }
+  .hero-meta { gap: 20px; }
+}
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .breakdown-grid { grid-template-columns: repeat(3, 1fr); }
+  .kpi-card .number { font-size: 2.2rem; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .kpi-card, .project-card { transition: none; }
+  .month-bar .bar-fill { transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">2026 H1 Work Report</div>
+      <h1>謝杞釧<br>上半年工作進度匯報</h1>
+      <p class="hero-sub">涵蓋 2026 年 1 月至 6 月期間，橫跨多專案的產品企劃、規格撰寫、品質測試與跨部門協調工作成果。</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="label">報告期間</span>
+          <span class="value">2026.01 - 2026.06</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">有效工作日</span>
+          <span class="value">112 天</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="label">總工作項目</span>
+          <span class="value">669 筆</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KPI -->
+<section class="kpi-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>核心績效指標</h2>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card reveal">
+        <span class="icon">&#x1F4CB;</span>
+        <span class="number">669<span class="unit">筆</span></span>
+        <p class="desc">總工作項目數</p>
+      </div>
+      <div class="kpi-card reveal">
+        <span class="icon">&#x1F4C5;</span>
+        <span class="number">112<span class="unit">天</span></span>
+        <p class="desc">有效工作日</p>
+      </div>
+      <div class="kpi-card reveal">
+        <span class="icon">&#x26A1;</span>
+        <span class="number">6.0<span class="unit">項/日</span></span>
+        <p class="desc">日均處理量</p>
+      </div>
+      <div class="kpi-card reveal">
+        <span class="icon">&#x1F91D;</span>
+        <span class="number">86<span class="unit">場</span></span>
+        <p class="desc">跨專案會議</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section class="projects-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>專案分佈總覽</h2>
+      <p>半年期間參與 9 個專案，其中街霸/王牌爭霸為核心專案，佔總工作量 25%。</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card featured reveal">
+        <span class="project-icon">&#x1F3AE;</span>
+        <div class="project-name">街霸 / 王牌爭霸</div>
+        <div class="project-count">168</div>
+        <div class="project-label">工作項目 - 核心專案</div>
+        <div class="project-months">活躍期間: 2026-01 至 2026-06（全期間）</div>
+        <div class="tag-row">
+          <span class="tag">規格撰寫</span>
+          <span class="tag">品質測試</span>
+          <span class="tag">監修送審</span>
+          <span class="tag">代理商協調</span>
+          <span class="tag">成本估算</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <span class="project-icon">&#x1F3B5;</span>
+        <div class="project-name">電音魔方</div>
+        <div class="project-count">103</div>
+        <div class="project-label">工作項目</div>
+        <div class="project-months">2026-01 至 2026-06</div>
+        <div class="tag-row">
+          <span class="tag">深化改版</span>
+          <span class="tag">送審文件</span>
+          <span class="tag">版本測試</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <span class="project-icon">&#x1F9CA;</span>
+        <div class="project-name">蟹霸來襲</div>
+        <div class="project-count">12</div>
+        <div class="project-label">工作項目</div>
+        <div class="project-months">2026-03 至 2026-06</div>
+        <div class="tag-row">
+          <span class="tag">送審</span>
+          <span class="tag">場測</span>
+          <span class="tag">深化規格</span>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <span class="project-icon">&#x1F4BC;</span>
+        <div class="project-name">其他支援工作</div>
+        <div class="project-count">269</div>
+        <div class="project-label">工作項目</div>
+        <div class="project-months">2026-01 至 2026-06</div>
+        <div class="tag-row">
+          <span class="tag">競品分析</span>
+          <span class="tag">展會出差</span>
+          <span class="tag">AI 研究</span>
+          <span class="tag">新人帶領</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Monthly Breakdown -->
+<section class="breakdown-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>月度工作量分佈</h2>
+      <p>一月份為工作量高峰，主因為街霸 Alpha 版衝刺與年初多專案同步啟動。</p>
+    </div>
+    <div class="breakdown-grid reveal">
+      <div class="month-bar">
+        <div class="bar-number">190</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="100" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">1月</div>
+      </div>
+      <div class="month-bar">
+        <div class="bar-number">111</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="59" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">2月</div>
+      </div>
+      <div class="month-bar">
+        <div class="bar-number">119</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="63" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">3月</div>
+      </div>
+      <div class="month-bar">
+        <div class="bar-number">97</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="51" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">4月</div>
+      </div>
+      <div class="month-bar">
+        <div class="bar-number">82</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="43" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">5月</div>
+      </div>
+      <div class="month-bar">
+        <div class="bar-number">70</div>
+        <div class="bar-wrap">
+          <div class="bar-fill" data-height="37" style="height:0; background: linear-gradient(to top, #2563eb, #60a5fa);"></div>
+        </div>
+        <div class="bar-label">6月</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Meetings -->
+<section class="meetings-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>跨專案會議統計</h2>
+    </div>
+    <div class="meeting-stats reveal">
+      <div class="meeting-big-number">
+        <div class="number">86</div>
+        <div class="label">場會議</div>
+      </div>
+      <div class="meeting-types">
+        <div class="meeting-type">
+          <span class="name">策略與幹部會議</span>
+          <span class="count">18</span>
+        </div>
+        <div class="meeting-type">
+          <span class="name">營運/技術/數據週會</span>
+          <span class="count">15</span>
+        </div>
+        <div class="meeting-type">
+          <span class="name">代理商會議</span>
+          <span class="count">12</span>
+        </div>
+        <div class="meeting-type">
+          <span class="name">企劃交流/分享會</span>
+          <span class="count">14</span>
+        </div>
+        <div class="meeting-type">
+          <span class="name">產品展示會議</span>
+          <span class="count">8</span>
+        </div>
+        <div class="meeting-type">
+          <span class="name">其他跨部門會議</span>
+          <span class="count">19</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>關鍵里程碑</h2>
+      <p>上半年主要產品節點與重要事件。</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.01</div>
+        <div class="timeline-content">
+          <h3>街霸 Alpha 版衝刺</h3>
+          <ul>
+            <li>Alpha 版簡報製作與內部展示</li>
+            <li>音樂音效規格開立</li>
+            <li>卡片二維碼工藝測試</li>
+            <li>Prototype 稽核文件準備</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.02</div>
+        <div class="timeline-content">
+          <h3>街霸 Alpha 內部展示 / 電音深化啟動</h3>
+          <ul>
+            <li>街霸 Alpha 版內部展示</li>
+            <li>電音魔方深化規格討論</li>
+            <li>美術顧問會議</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.03</div>
+        <div class="timeline-content">
+          <h3>成本試算 / 蟹霸啟動</h3>
+          <ul>
+            <li>街霸成本與售價預估</li>
+            <li>蟹霸來襲送審文件啟動</li>
+            <li>電音魔方送審資料補件</li>
+            <li>新人帶領入職</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.04</div>
+        <div class="timeline-content">
+          <h3>代理商會議 / 展會參展</h3>
+          <ul>
+            <li>代理商機台體驗與場勘</li>
+            <li>電音/蟹霸白紙測試體驗會</li>
+            <li>街霸規格改版與語音規格</li>
+            <li>展會考察與培訓</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.05</div>
+        <div class="timeline-content">
+          <h3>監修送審 / 海外出差</h3>
+          <ul>
+            <li>街霸監修文件彙整與影片錄製</li>
+            <li>王牌爭霸商標送審</li>
+            <li>海外展會出差與競品考察</li>
+            <li>電音魔方 TW 版測項開立</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-month">2026.06</div>
+        <div class="timeline-content">
+          <h3>玩法優化 / AI 研究啟動</h3>
+          <ul>
+            <li>街霸玩法優化方案規劃</li>
+            <li>街霸銷售協調會議</li>
+            <li>手冊 Agent 訓練與 AI 研究</li>
+            <li>新人結訓報告指導</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Highlights -->
+<section class="highlights-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>工作亮點</h2>
+    </div>
+    <div class="highlights-grid">
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F3AF;</span>
+        <h3>Alpha 到優化的全週期</h3>
+        <p>街霸從 Alpha 版簡報、Prototype 稽核、到六月的玩法優化方案，完整參與產品從 0 到 1 的全生命週期。</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F30F;</span>
+        <h3>海外出差與競品考察</h3>
+        <p>五月赴海外參與展會，完成競品外觀評比、展會紀錄整理與出差分享報告，帶回市場情報。</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F916;</span>
+        <h3>AI 工具導入先驅</h3>
+        <p>六月啟動自動產出手冊 AI 研究、手冊 Agent 訓練，探索 AI 賦能工作流程的可能性。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Management -->
+<section class="highlights-section" style="padding-top: 0;">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2>管理與人才培育</h2>
+    </div>
+    <div class="highlights-grid">
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F4DD;</span>
+        <h3>群 KPI 簡報</h3>
+        <p>每季製作群 KPI 簡報，協助團隊追蹤目標達成狀況，共完成 5 次簡報製作與調整。</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F393;</span>
+        <h3>新人培訓指導</h3>
+        <p>帶領新人認識團隊環境，指導報告簡報製作技巧，陪伴至結訓報告完成。</p>
+      </div>
+      <div class="highlight-card reveal">
+        <span class="icon">&#x1F4CA;</span>
+        <h3>專案半年檢核</h3>
+        <p>完成專案半年檢核報告，彙整各專案進度並提出下半年規劃建議。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <p>謝杞釧 - 2026 上半年工作進度匯報 - 資料統計截至 2026 年 6 月</p>
+  </div>
+</footer>
+
+<script>
+// Scroll Reveal
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => observer.observe(el));
+
+// Bar chart animation
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const bars = entry.target.querySelectorAll('.bar-fill');
+      bars.forEach((bar, i) => {
+        setTimeout(() => {
+          bar.style.height = bar.dataset.height + '%';
+        }, i * 120);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+const breakdownGrid = document.querySelector('.breakdown-grid');
+if (breakdownGrid) barObserver.observe(breakdownGrid);
+</script>
+</body>
+</html>
